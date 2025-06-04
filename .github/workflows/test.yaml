@@ -1,9 +1,10 @@
 name: test read python error messages
 
 on:
-  schedule:
-    # Runs "at minute 55 past every hour" (see https://crontab.guru)
-    - cron: "00 15 * * *"
+  # on push to the main branch
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -24,4 +25,4 @@ jobs:
       - name: Print error message
         if: ${{ failure() }}
         run: |
-          echo "Error message: ${{ steps.Run.outputs.error_message }}"
+          echo "Error message: ${{ steps.run.outputs.error_message }}"
