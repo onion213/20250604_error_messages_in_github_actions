@@ -21,8 +21,8 @@ jobs:
           python-version: "3.13"
       - name: Run 
         run: |
-          python main.py
+          python main.py 2> error.txt
       - name: Print error message
         if: ${{ failure() }}
         run: |
-          echo "Error message: ${{ steps.run.outputs.error_message }}"
+          echo "Error message: $(cat error.txt)"
